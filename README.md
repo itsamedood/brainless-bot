@@ -31,7 +31,7 @@
 > ```
 > We'll get the number `72`, which according to the table, is `H`.
 
-# How do write a Discord bot in Brainfuck?
+# How do you write a Discord bot in Brainfuck?
 > Well, if we use [my Brainfuck interpreter](https://github.com/itsamedood/bfi), we can use 3 flags to write code for another language but in Brainfuck:
 > - `--out=path/to/out.file` | Writes the output to the specified file.
 > - `--dump=bin/file.dump` | Dumps the memory (in this case, the array of integers) to the specified file.

@@ -1,0 +1,6 @@
+{
+  "name": "brainless-bot",
+  "version": "1.0.0",
+  "description": "Why did I do this?",
+  "main": "src/index.ts"
+}

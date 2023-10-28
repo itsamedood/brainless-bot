@@ -45,12 +45,11 @@ def convert_bf_to_ts(bffiles: list[str]) -> None:
       tsfile = "ts%s" %bfsplit
 
     dumpfile = "dumps/%s.dump" %bffile.split("bf")[1].replace('\\', '/').split('.')[0].split('/')[-1]
-    # print(dumpfile)
 
     if not exists(tsfile):
       with open(tsfile, 'x'): pass  # Create the file and do nothing more.
 
-    # system(f"bfi --no_stdout --out={tsfile} --dump={dumpfile} {bffile}")
+    system(f"bfi --no_stdout --out={tsfile} --dump={dumpfile} {bffile}")  # Writes output to it's equivalent TS file and dumps.
 
 
 if __name__ == "__main__":
