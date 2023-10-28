@@ -19,7 +19,7 @@
 > Using these characters, you can move through the array and modify numbers. As mentioned above, `.` prints the number your pointing at in ASCII. Here's an ASCII table so you can see what this really does:
 >> ![ASCIItable](./assets/asciitable.png)
 > So if we do the following:
-> ```bf
+> ```
 > Use index 1 as the for loop counter which is set to 8
 > In the loop we move to index 0 and increment it 9 times
 > then we move forward and decrement by 1
