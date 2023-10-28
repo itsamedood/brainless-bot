@@ -16,6 +16,8 @@
 > - `[` | Start a loop.
 > - `]` | Close a loop.
 >
+> ### NOTE: Any other character will be ignored, so you can add comments really easy, but your comments cannot contain ANY of the above symbols.
+>
 > Using these characters, you can move through the array and modify numbers. As mentioned above, `.` prints the number your pointing at in ASCII. Here's an ASCII table so you can see what this really does:
 >> ![ASCIItable](./assets/asciitable.png)
 > So if we do the following:

@@ -1,0 +1,15 @@
+{
+	"configurations": [
+		{
+			"name": "Compile BF to TS",
+			"type": "python",
+			"request": "launch",
+			"program": "compile.py",
+			"pythonArgs": [
+				"-B",
+			],
+			"console": "integratedTerminal",
+			"justMyCode": true
+		}
+	]
+}
