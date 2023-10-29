@@ -54,6 +54,6 @@ def convert_bf_to_ts(bffiles: list[str]) -> None:
 
 if __name__ == "__main__":
   run_install = make_dirs()
-  if run_install: system("cd %s/ts && npm i discord.js glob" %getcwd())
-
   convert_bf_to_ts(get_bf_files())
+
+  if run_install: system("cd %s/ts && npm i discord.js dotenv glob" %getcwd())
