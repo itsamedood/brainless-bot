@@ -1,8 +1,9 @@
 import { Client, ClientOptions, Collection } from "discord.js";
 import { Routes } from "discord-api-types/v9";
 import { REST } from "@discordjs/rest";
-import Command, { CommandData } from "./types/command";
 import { glob } from "glob";
+import Command, { CommandData } from "./types/command";
+import Event from "./types/event";
 
 export default class Bot extends Client {
   public commands = new Collection<string, Command>();
@@ -41,5 +42,19 @@ export default class Bot extends Client {
         return console.error(err);
       }
     })();
+  }
+
+  public async registerEvents(): Promise<void> {
+    const eventFiles = await glob(`${__dirname}/events/**/*.ts`, { absolute: true });
+
+    for (const file of eventFiles) {
+      const { default: Event } = await import(file);
+      const event: Event = new Event();
+
+      event.once ? this.once(event.name, async (...args) => event.execute(this, ...args))
+      : this.on(event.name, async (...args) => event.execute(this, ...args));
+
+      console.log(`Loaded ${event.name} event!`);
+    }
   }
 }
