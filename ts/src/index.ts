@@ -43,4 +43,4 @@ const client = new Bot({
   await client.registerEvents();
   await client.registerCommands();
   await client.login(process.env["TOKEN"] ?? '');
-});
+})();
