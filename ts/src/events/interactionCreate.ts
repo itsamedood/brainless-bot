@@ -8,5 +8,14 @@ import Bot from "../bot";
 export default class InteractionCreateEvent extends Event {
   constructor() { super({ name: "interactionCreate" }); }
 
-  public async execute(client: Bot) {}
+  public async execute(client: Bot, interaction: ChatInputCommandInteraction) {
+    if (interaction.isChatInputCommand()) {
+      if (interaction.channel?.isDMBased()) return;
+
+      const command: Command | undefined = client.commands.get(interaction.commandName);
+      if (!command) return;
+
+      if (!interaction.memberPermissions?.has(command.userPermissions)) return await interaction.reply({ content: "You can't use this command!", ephemeral: true });
+    }
+  }
 }
