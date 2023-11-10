@@ -15,7 +15,19 @@ export default class InteractionCreateEvent extends Event {
       const command: Command | undefined = client.commands.get(interaction.commandName);
       if (!command) return;
 
-      if (!interaction.memberPermissions?.has(command.userPermissions)) return await interaction.reply({ content: "You can't use this command!", ephemeral: true });
+      if (!interaction.memberPermissions?.has(command.userPermissions))
+        return await interaction.reply({ content: "You can't use this command!", ephemeral: true });
+
+      try {
+        return await command.execute(interaction, client);
+      } catch (err) {
+        await interaction.reply({ content: `Error while executing command:\n\`\`\`ts\n${err}\n\`\`\``, ephemeral: true });
+        return console.error(err);
+      }
     }
+
+    // else if (interaction.isButton()) { }
+    // else if (interaction.isAnySelectMenu()) { }
+    // else if (interaction.isModalSubmit()) { }
   }
 }
