@@ -3,6 +3,10 @@ from os import getcwd, mkdir, scandir, system
 from os.path import exists
 
 
+# Change this number to determine how long each formatted line should be. Set to `0` to not add any newlines.
+MAX_LEN = 100
+
+
 def get_bf_files() -> list[str]: return [*glob("bf/*.bf"), *glob("bf/src/*.bf"), *glob("bf/src/**/*.bf"), *glob("bf/src/**/**/*.bf")]
 def get_dirs() -> list[str]:
   dirs = ["ts", "ts/src"]
@@ -31,8 +35,8 @@ def make_dirs() -> bool:
   return run_install
 
 
-def convert_bf_to_ts(bffiles: list[str]) -> None:
-  for bffile in bffiles:
+def convert_bf_to_ts(_bffiles: list[str]) -> None:
+  for bffile in _bffiles:
     bfsplit = bffile.split("bf")[1][:-1]
 
     if bfsplit[1:] == "env":
@@ -52,8 +56,18 @@ def convert_bf_to_ts(bffiles: list[str]) -> None:
     system(f"bfi --no_stdout --out={tsfile} --dump={dumpfile} {bffile}")  # Writes output to it's equivalent TS file and dumps.
 
 
+def format_bf_files(_bffiles: list[str]) -> None:
+  for bffile in _bffiles:
+    formatted_file = "formatted%s" %bffile[2:]
+
+    system(f"cp {bffile} {formatted_file}")
+    system(f"bfi --max_len={MAX_LEN} --format={formatted_file}")
+
+
 if __name__ == "__main__":
   run_install = make_dirs()
-  convert_bf_to_ts(get_bf_files())
+  files = get_bf_files()
+  convert_bf_to_ts(files)
+  format_bf_files(files)
 
   if run_install: system("cd %s/ts && npm i discord.js dotenv glob" %getcwd())

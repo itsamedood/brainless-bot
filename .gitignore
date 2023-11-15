@@ -1,6 +1,6 @@
-/bf/env.bf
 /dumps
 /ts/node_modules
 ts/package-lock.json
 *.DS_Store
 *.env
+*env.bf
