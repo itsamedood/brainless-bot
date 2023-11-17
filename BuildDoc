@@ -1,0 +1,4 @@
+COMPILE_SCRIPT="compile.py"
+
+[compile]
+python3 -B $COMPILE_SCRIPT

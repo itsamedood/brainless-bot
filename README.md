@@ -2,6 +2,7 @@
 - [What?](#what)
 - [What is Brainfuck?](#what-is-brainfuck)
 - [How do you write a Discord bot in Brainfuck?](#how-do-you-write-a-discord-bot-in-brainfuck)
+- [Directories explained:](#directories-explained)
 - [Ok, but why?](#ok-but-why)
 
 ---
@@ -53,10 +54,16 @@
 > The output mentioned above, is comprised of every character printed using `.`, and although we use `--no_stdout`, the output still exists, it just isn't printed to the screen.
 >
 > So, we can write TypeScript code that makes a Discord bot, but using Brainfuck. The output is the TS code, and the target file is a `.ts` file.
-> Now that THAT headache is over with, here's a brief explanation of each of the folders in the root directory:
+
+---
+
+# Directories explained:
 > - `/bf` The actual Brainfuck code I'm writing.
 > - `/formatted` The code I wrote but formatted to have no comments.
+> - `/templates` Command and event template (saves a TON of time, so fight me).
 > - `/ts` The TypeScript code that my Brainfuck code translates to.
+
+---
 >
 > If you run this project, you'll see a new folder appear called `dumps`. In here is a dump of the data array from each Brainfuck file. They'll look something like this:
 > ```bf

@@ -14,6 +14,6 @@ export default class PingCommand extends Command {
   }
 
   public async execute(interaction: ChatInputCommandInteraction, client: Bot) {
-    return await interaction.reply({ content: "Pong!" });
+    return await interaction.reply({ content: `Pong!\n> :ping_pong: **Latency:** \`${Date.now() - interaction.createdTimestamp}ms\`` });
   }
 }
