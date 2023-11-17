@@ -53,7 +53,7 @@ def convert_bf_to_ts(_bffiles: list[str]) -> None:
     if not exists(tsfile):
       with open(tsfile, 'x'): pass  # Create the file and do nothing more.
 
-    system(f"bfi --no_stdout --out={tsfile} --dump={dumpfile} {bffile}")  # Writes output to it's equivalent TS file and dumps.
+    system(f"bfi --no_chr_limit --no_stdout --out={tsfile} --dump={dumpfile} {bffile}")  # Writes output to it's equivalent TS file and dumps.
 
 
 def format_bf_files(_bffiles: list[str]) -> None:

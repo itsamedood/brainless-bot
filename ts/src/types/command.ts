@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction } from "discord.js";
 import Bot from "../bot";
 
-export declare type Category = "MISC" | "MODERATION";
+export declare type Category = "FUN" | "MISC" | "MODERATION";
 
 export enum OptionType {
   SUB_COMMAND = 1,
