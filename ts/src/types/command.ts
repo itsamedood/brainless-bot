@@ -21,6 +21,7 @@ export interface OptionData {
   name: string;
   description: string;
   type: OptionType;
+  required?: boolean | undefined;
 }
 
 export interface CommandData {
