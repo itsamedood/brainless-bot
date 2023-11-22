@@ -29,6 +29,10 @@ export default class KickCommand extends Command {
   }
 
   public async execute(interaction: ChatInputCommandInteraction, client: Bot) {
-    
+    const user = interaction.options.getUser("member", true);
+    const reason = interaction.options.getString("reason", false) ?? "No reason given.";
+    if (!user) return;
+
+    const member = interaction.guild?.members.cache.get(user.id);
   }
 }
