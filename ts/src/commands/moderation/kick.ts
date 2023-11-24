@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction, PermissionFlagsBits } from "discord.js";
-import Bot from "../../bot";
 import Command, { OptionType } from "../../types/command";
+import Bot from "../../bot";
 
 export default class KickCommand extends Command {
   constructor() {
@@ -34,5 +34,19 @@ export default class KickCommand extends Command {
     if (!user) return;
 
     const member = interaction.guild?.members.cache.get(user.id);
+    if (!member) return;
+
+    if (member.kickable) {
+      const defer = await interaction.deferReply({ ephemeral: true });
+
+      try {
+        await member.send({ content: `You were kicked from ${interaction.guild?.name}.\n\`\`\`txt\n${reason}\n\`\`\`` });
+      } catch { }
+
+      await member.kick(reason);
+      return await defer.edit({ content: `Successfully kicked **${member.user.username}**!` });
+    }
+
+    return await interaction.reply({ content: `I can't kick **${member.user.username}**!`, ephemeral: true });
   }
 }
