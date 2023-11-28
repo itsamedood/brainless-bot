@@ -51,7 +51,6 @@
 > - `--out=path/to/out.file` | Writes the output to the specified file.
 > - `--dump=bin/file.dump` | Dumps the memory (in this case, the array of integers) to the specified file.
 > - `--no_stdout` | When using `.`, the value will not be printed to the console.
-> - `--format` | Formats the specified `.bf` file to have no comments.
 >
 > The output mentioned above, is comprised of every character printed using `.`, and although we use `--no_stdout`, the output still exists, it just isn't printed to the screen.
 >
@@ -61,7 +60,6 @@
 
 # Directories explained:
 > - `/bf` The actual Brainfuck code I'm writing.
-> - `/formatted` The code I wrote but formatted to have no comments.
 > - `/templates` Command and event templates (saves a TON of time, so fight me).
 > - `/ts` The TypeScript code that my Brainfuck code translates to.
 

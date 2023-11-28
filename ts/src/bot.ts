@@ -57,4 +57,8 @@ export default class Bot extends Client {
       console.log(`Loaded ${event.name} event!`);
     }
   }
+
+  public async registerModals(): Promise<void> {
+    const modalFiles = await glob(`${__dirname}/com/**/*.ts`, { absolute: true });
+  }
 }
