@@ -38,7 +38,7 @@ const client = new Bot({
 
 (async (): Promise<void> => {
   // await client.registerButtons();
-  // await client.registerModals();
+  await client.registerModals();
   // await client.registerSelectMenus();
   await client.registerEvents();
   await client.registerCommands();

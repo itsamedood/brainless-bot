@@ -75,12 +75,10 @@ if __name__ == "__main__":
     with open(file, 'r') as bffile:
       if hash_code(bffile.read()) not in hashes: tocompile.append((file, "%sts" %file.replace("bf", "ts", 1)[:-2]))
 
-  bffiles = [bffile for bffile, _ in tocompile]
-
   if len(tocompile) > 0:
     make_files(tsfiles)
     compile_bf_files(tocompile)
-    dump_bf_files(bffiles)
+    dump_bf_files([bffile for bffile, _ in tocompile])
   else: print("Nothing to compile...")
 
   hash_files(bffiles)

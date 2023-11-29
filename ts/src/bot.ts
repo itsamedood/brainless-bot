@@ -4,9 +4,12 @@ import { REST } from "@discordjs/rest";
 import { glob } from "glob";
 import Command, { CommandData } from "./types/command";
 import Event from "./types/event";
+import Modal from "./types/modal";
 
 export default class Bot extends Client {
   public commands = new Collection<string, Command>();
+  public modals = new Collection<string, Modal>();
+
   private _commandJSON: CommandData[] = [];
 
   constructor(options: ClientOptions) { super(options); }
@@ -60,5 +63,13 @@ export default class Bot extends Client {
 
   public async registerModals(): Promise<void> {
     const modalFiles = await glob(`${__dirname}/com/**/*.ts`, { absolute: true });
+
+    for (const file of modalFiles) {
+      const { default: Modal } = await import(file);
+      const modal: Modal = new Modal();
+
+      this.modals.set(modal.customId, modal);
+      console.log(`Loaded ${modal.customId} modal!`);
+    }
   }
 }
