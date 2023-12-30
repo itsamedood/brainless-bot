@@ -1,4 +1,7 @@
-import { ChatInputCommandInteraction } from "discord.js";
+import {
+  ActionRowBuilder,
+  ChatInputCommandInteraction
+} from "discord.js";
 import Bot from "../../bot";
 import Command from "../../types/command";
 

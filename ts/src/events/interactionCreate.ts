@@ -1,5 +1,6 @@
 import {
   ChatInputCommandInteraction,
+  ModalSubmitInteraction
 } from "discord.js";
 import Command from "../types/command";
 import Event from "../types/event";
@@ -8,7 +9,7 @@ import Bot from "../bot";
 export default class InteractionCreateEvent extends Event {
   constructor() { super({ name: "interactionCreate" }); }
 
-  public async execute(client: Bot, interaction: ChatInputCommandInteraction) {
+  public async execute(client: Bot, interaction: ChatInputCommandInteraction | ModalSubmitInteraction) {
     if (interaction.isChatInputCommand()) {
       if (interaction.channel?.isDMBased()) return;
 
@@ -28,6 +29,16 @@ export default class InteractionCreateEvent extends Event {
 
     // else if (interaction.isButton()) { }
     // else if (interaction.isAnySelectMenu()) { }
-    // else if (interaction.isModalSubmit()) { }
+    else if (interaction.isModalSubmit()) {
+      const modal = client.modals.get(interaction.customId);
+      if (!modal) return await interaction.reply({ content: `No modal found.`, ephemeral: true });
+
+      try {
+        return await modal.execute(interaction, client);
+      } catch (err) {
+        await interaction.reply({ content: `Error while executing modal:\n\`\`\`ts\n${err}\n\`\`\``, ephemeral: true });
+        return console.error(err);
+      }
+    }
   }
 }
