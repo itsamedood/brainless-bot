@@ -1,7 +1,5 @@
 /dumps
-/ts/node_modules
-ts/package-lock.json
+/node_modules
 *.DS_Store
 *.env
-*env.bf
-.hashes
+bun.lockb
