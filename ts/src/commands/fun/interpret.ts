@@ -1,7 +1,10 @@
 import {
   ActionRowBuilder,
-  ChatInputCommandInteraction
-} from "discord.js";
+  ChatInputCommandInteraction,
+  ModalBuilder,
+  ModalActionRowComponentBuilder,
+  TextInputBuilder,
+  TextInputStyle } from 'discord.js';
 import Bot from "../../bot";
 import Command from "../../types/command";
 
@@ -17,6 +20,18 @@ export default class InterpretCommand extends Command {
   }
 
   public async execute(interaction: ChatInputCommandInteraction, client: Bot) {
-    return await interaction.reply({ content: "Coming soon..." });
+    const bfInterpModal = new ModalBuilder({
+      customId: "bfInterpModal",
+      title: "Code Input",
+      components: [
+        new ActionRowBuilder<ModalActionRowComponentBuilder>({
+          components: [
+            new TextInputBuilder({ customId: "codeInput", label: "Input your Brainf**k code here!", style: TextInputStyle.Paragraph, required: true })
+          ]
+        })
+      ]
+    });
+
+    return await interaction.showModal(bfInterpModal);
   }
 }

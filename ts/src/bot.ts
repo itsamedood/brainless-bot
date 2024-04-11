@@ -15,7 +15,7 @@ export default class Bot extends Client {
   constructor(options: ClientOptions) { super(options); }
 
   public async registerCommands(): Promise<void> {
-    const cmdFiles = await glob(`${__dirname}/commands/**/*.ts`, { absolute: true });
+    const cmdFiles = await glob(`${import.meta.dir}/commands/**/*.ts`, { absolute: true });
 
     for (const file of cmdFiles) {
       const { default: Command } = await import(file);
@@ -35,7 +35,7 @@ export default class Bot extends Client {
         console.log(`Refreshing ${cmdFiles.length} application commands.`);
 
         const data: any = await rest.put(
-          Routes.applicationCommands(clientId), 
+          Routes.applicationCommands(clientId),
           { body: this._commandJSON }
         );
 
@@ -48,7 +48,7 @@ export default class Bot extends Client {
   }
 
   public async registerEvents(): Promise<void> {
-    const eventFiles = await glob(`${__dirname}/events/**/*.ts`, { absolute: true });
+    const eventFiles = await glob(`${import.meta.dir}/events/**/*.ts`, { absolute: true });
 
     for (const file of eventFiles) {
       const { default: Event } = await import(file);
@@ -62,7 +62,7 @@ export default class Bot extends Client {
   }
 
   public async registerModals(): Promise<void> {
-    const modalFiles = await glob(`${__dirname}/com/**/*.ts`, { absolute: true });
+    const modalFiles = await glob(`${import.meta.dir}/components/modals/*.ts`, { absolute: true });
 
     for (const file of modalFiles) {
       const { default: Modal } = await import(file);

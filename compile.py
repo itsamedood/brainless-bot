@@ -10,7 +10,6 @@ def get_ts_files(): return [f.replace("bf", "ts", 1) for f in ["%sts" %f[:-2] fo
 
 def make_directories() -> bool:
   install_pkgs = not exists("ts")
-
   [makedirs(f, exist_ok=True) for f in [f.replace("bf", "ts", 1) for f in glob("bf/**/", recursive=True)]]
 
   return install_pkgs
@@ -82,4 +81,4 @@ if __name__ == "__main__":
   else: print("Nothing to compile...")
 
   hash_files(bffiles)
-  if install_pkgs: system("cd %s/ts && npm i discord.js dotenv glob" %getcwd())
+  if install_pkgs: system("cd %s/ts && bun install discord.js dotenv glob" %getcwd())

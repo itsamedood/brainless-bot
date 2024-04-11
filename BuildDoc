@@ -1,4 +1,7 @@
 COMPILE_SCRIPT="compile.py"
 
+[compilecompile] # lol
+pyinstaller --onefile --distpath . --name bbc compile.py
+
 [compile]
-python3 -B $COMPILE_SCRIPT
+bbc # why did i think this was funny...

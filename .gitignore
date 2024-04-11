@@ -1,7 +1,12 @@
+/build
+/dist
 /dumps
 /ts/node_modules
-ts/package-lock.json
+ts/bun.lockb
 *.DS_Store
 *.env
+*.spec
 *env.bf
 .hashes
+bbc.exe
+bbc
