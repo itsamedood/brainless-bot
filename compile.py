@@ -19,6 +19,7 @@ def make_files(_files: list[str]):
   for file in _files:
     if "env" in file: file = file.replace("env.ts", ".env")
     if "package.json" in file: file = file.replace("package.json.ts", "package.json")
+    if "tsconfig.json" in file: file = file.replace("tsconfig.json.ts", "tsconfig.json")
 
     if not exists(file):
       with open(file, 'x'): ...
@@ -28,6 +29,7 @@ def compile_bf_files(_tocompile: list[tuple[str, str]]):
   for bffile, tsfile in _tocompile:
     if "env" in tsfile: tsfile = tsfile.replace("env.ts", ".env")
     if "package.json" in tsfile: tsfile = tsfile.replace("package.json.ts", "package.json")
+    if "tsconfig.json" in tsfile: tsfile = tsfile.replace("tsconfig.json.ts", "tsconfig.json")
 
     system(f"bfi --out={tsfile} --no_stdout --no_chr_limit {bffile}")
 

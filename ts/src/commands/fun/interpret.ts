@@ -2,7 +2,7 @@ import {
   ActionRowBuilder,
   ChatInputCommandInteraction,
   ModalBuilder,
-  ModalActionRowComponentBuilder,
+  type ModalActionRowComponentBuilder,
   TextInputBuilder,
   TextInputStyle } from 'discord.js';
 import Bot from "../../bot";
