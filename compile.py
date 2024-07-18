@@ -1,6 +1,10 @@
+# Brainless Bot Compiler.
+
+
 from glob import glob
 from os import getcwd, makedirs, system
 from os.path import exists
+from sys import exit
 from zlib import crc32
 
 
