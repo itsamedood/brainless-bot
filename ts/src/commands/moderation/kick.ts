@@ -47,6 +47,12 @@ export default class KickCommand extends Command {
       return await defer.edit({ content: `Successfully kicked **${member.user.username}**!` });
     }
 
+    switch (member.user.id) {
+      case client.user?.id: return await interaction.reply({ content: "# >:(", ephemeral: true });
+      case interaction.user.id: return await interaction.reply({ content: "leave button??", ephemeral: true });
+      case interaction.guild?.ownerId: return await interaction.reply({ content: "-# i'm gonna tell em' what you just tried to do.", ephemeral: true });
+    }
+
     return await interaction.reply({ content: `I can't kick **${member.user.username}**!`, ephemeral: true });
   }
 }
